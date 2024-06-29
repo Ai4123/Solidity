@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+
+contract BasicCalculator {
+    uint256 public result = 0;
+
+    function add(uint256 a, uint256 b) internal {
+        result = a + b;
+    }
+
+    function subtract(uint256 a, uint256 b) internal {
+        result = a - b;
+    }
+}
+
+contract AdvancedCalculator is BasicCalculator {
+    function multiply(uint256 a, uint256 b) internal {
+        result = a * b;
+    }
+
+	function divide(uint256 a, uint256 b) internal {
+        result = a / b;
+    }
+
+    function performOperation(uint256 a, uint256 b, uint8 operation) {
+		if (operation == 0) add(a, b);
+		else if(operation == 1) subtract(a, b);
+		else if(operation == 2) multiply(a, b);
+		else if(operation == 3) divide(a, b);
+		else revert("Invalid Operation");
+    }
+}
